@@ -17,7 +17,7 @@ export const Hero = () => {
           </p>
           <div className="flex gap-4 justify-center">
             <a 
-              href="#" 
+              href="https://github.com/maheshbansod/render-observer-ext"
               className="px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
             >
               Install Extension

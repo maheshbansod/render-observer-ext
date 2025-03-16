@@ -2,6 +2,10 @@
 
 Illuminate your DOM mutations with style! Render Observer is a sleek browser extension that helps you catch unnecessary re-renders in real-time by visualizing DOM changes with elegant highlights.
 
+Coming soon to Chrome Web store and Firefox Addons.
+
+Till then, you can install the extension from source. -> pnpm build and load the dist folder
+
 ## ✨ Features
 
 - **Real-time Visualization**: Watch your DOM mutations come to life with customizable highlights

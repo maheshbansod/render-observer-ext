@@ -13,7 +13,7 @@ function App() {
         <div className="container mx-auto px-4 text-center">
           <p>Made with ♥ by Light</p>
           <div className="mt-4">
-            <a href="https://github.com/yourusername/render-observer" className="text-blue-400 hover:text-blue-300 transition-colors">
+            <a href="https://github.com/maheshbansod/render-observer-ext" className="text-blue-400 hover:text-blue-300 transition-colors">
               GitHub
             </a>
           </div>
