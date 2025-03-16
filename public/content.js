@@ -4,16 +4,22 @@
  * to help identify performance issues caused by excessive re-renders.
  */
 (function() {
-    // Configuration
-    const config = {
+    // Configuration will be initialized with these fallback values
+    let config = {
       borderColor: '#1E90FF', // Dodger blue
       borderWidth: '2px',
       borderStyle: 'solid',
       highlightDuration: 500, // milliseconds
       zIndex: 999999,
-      ignoredSelectors: [
-      ]
+      ignoredSelectors: []
     };
+  
+    // Load initial config from storage
+    chrome.storage.sync.get(['defaultConfig'], (result) => {
+      if (result.defaultConfig) {
+        Object.assign(config, result.defaultConfig);
+      }
+    });
   
     // Store timeouts for each element to allow proper cleanup
     const highlightTimeouts = new WeakMap();
