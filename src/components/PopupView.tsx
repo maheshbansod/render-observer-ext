@@ -98,7 +98,7 @@ export const PopupView = () => {
       <div className="space-y-4">
         <h3 className="font-medium text-gray-700">Configuration</h3>
         
-        <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm text-gray-600">Border Color</label>
             <input
@@ -133,7 +133,7 @@ export const PopupView = () => {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-600">Highlight Duration (ms)</label>
+            <label className="block text-sm text-gray-600">Duration (ms)</label>
             <input
               type="number"
               value={config.highlightDuration}
@@ -141,16 +141,16 @@ export const PopupView = () => {
               className="mt-1 w-full px-3 py-2 border rounded"
             />
           </div>
-
-          {isEnabled && hasConfigChanged && (
-            <button
-              onClick={updateConfig}
-              className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-            >
-              Apply Changes
-            </button>
-          )}
         </div>
+
+        {isEnabled && hasConfigChanged && (
+          <button
+            onClick={updateConfig}
+            className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          >
+            Apply Changes
+          </button>
+        )}
       </div>
     </div>
   );
