@@ -1,14 +1,14 @@
 import { defineConfig } from 'vite'
-import deno from '@deno/vite-plugin'
 import react from '@vitejs/plugin-react-swc'
 import manifestJson from './manifest.json' with { type: "json" };
 import tailwindcss from '@tailwindcss/vite'
+import fs from 'fs';
 
 // https://vite.dev/config/
 export default defineConfig(({mode}) => {
   const OUT_DIR = 'dist';
   return {
-    plugins: [deno(), react(), tailwindcss(),
+    plugins: [react(), tailwindcss(),
     {
         name: 'copy-manifest',
         async closeBundle() {
@@ -23,13 +23,13 @@ export default defineConfig(({mode}) => {
                 }} : {}),
                 browser_specific_settings: {
                     gecko: {
-                        id: "css-view-ext@lightextensions"
+                        id: "render-observer-ext@lightextensions"
                     }
                 }
             } : manifestJson;
             
             try {
-                await Deno.writeTextFile(
+                fs.writeFileSync(
                     `${OUT_DIR}/manifest.json`, 
                     JSON.stringify(finalManifest)
                 );

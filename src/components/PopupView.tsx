@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { Switch } from './Switch';
 import { ConfigurationForm } from './ConfigurationForm';
 import { Config } from '../types/Config';
@@ -28,14 +28,6 @@ export const PopupView = () => {
             setConfig(response.config);
           }
         });
-      }
-    });
-
-    chrome.storage.sync.get(['defaultConfig'], (result) => {
-      if (result.defaultConfig) {
-        console.log('setting', result.defaultConfig);
-        console.log(config, 'config');
-        setDefaultConfig(result.defaultConfig);
       }
     });
 
