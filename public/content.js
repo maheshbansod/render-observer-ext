@@ -211,26 +211,29 @@
     // Listen for messages from the extension popup
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       if (message.action === 'getState') {
-        // Return the current state of the visualizer
         sendResponse({ 
-          isObserving: window.MutationVisualizer.active 
+          isObserving: window.MutationVisualizer.active,
+          config: config // Send the current config state
         });
       } else if (message.action === 'toggle') {
-        // Toggle the visualizer based on the incoming state
         if (message.isEnabled && !window.MutationVisualizer.active) {
+          if (message.config) {
+            window.MutationVisualizer.updateConfig(message.config);
+          }
           window.MutationVisualizer.toggle();
         } else if (!message.isEnabled && window.MutationVisualizer.active) {
           window.MutationVisualizer.toggle();
         }
         
-        // Return the new state
         sendResponse({ 
           status: 'success', 
           isObserving: window.MutationVisualizer.active 
         });
+      } else if (message.action === 'updateConfig') {
+        window.MutationVisualizer.updateConfig(message.config);
+        sendResponse({ status: 'success' });
       }
       
-      // Return true to indicate we'll respond asynchronously
       return true;
     });
   
