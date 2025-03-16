@@ -27,6 +27,9 @@ importers:
       '@types/chrome':
         specifier: ^0.0.309
         version: 0.0.309
+      '@types/react':
+        specifier: ^19.0.10
+        version: 19.0.10
       '@vitejs/plugin-react-swc':
         specifier: ^3.8.0
         version: 3.8.0(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2))
@@ -458,6 +461,9 @@ packages:
   '@types/node@22.13.10':
     resolution: {integrity: sha512-I6LPUvlRH+O6VRUqYOcMudhaIdUVWfsjnZavnsraHvpBwaEyMN29ry+0UVJhImYL16xsscu0aske3yA+uPOWfw==}
 
+  '@types/react@19.0.10':
+    resolution: {integrity: sha512-JuRQ9KXLEjaUNjTWpzuR231Z2WpIwczOkBEIvbHNCzQefFIT0L8IqE6NV6ULLyC1SI/i234JnDoMkfg+RjQj2g==}
+
   '@vitejs/plugin-react-swc@3.8.0':
     resolution: {integrity: sha512-T4sHPvS+DIqDP51ifPqa9XIRAz/kIvIi8oXcnOZZgHmMotgmmdxe/DD5tMFlt5nuIRzT0/QuiwmKlH0503Aapw==}
     peerDependencies:
@@ -473,6 +479,9 @@ packages:
         optional: true
       vue:
         optional: true
+
+  csstype@3.1.3:
+    resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
   detect-libc@2.0.3:
     resolution: {integrity: sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw==}
@@ -917,6 +926,10 @@ snapshots:
     dependencies:
       undici-types: 6.20.0
 
+  '@types/react@19.0.10':
+    dependencies:
+      csstype: 3.1.3
+
   '@vitejs/plugin-react-swc@3.8.0(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2))':
     dependencies:
       '@swc/core': 1.11.9
@@ -927,6 +940,8 @@ snapshots:
   '@vue/tsconfig@0.7.0(typescript@5.7.3)':
     optionalDependencies:
       typescript: 5.7.3
+
+  csstype@3.1.3: {}
 
   detect-libc@2.0.3: {}
 
