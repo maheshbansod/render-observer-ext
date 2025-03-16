@@ -1,0 +1,30 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4ECDC4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Main circle background -->
+  <circle cx="64" cy="64" r="60" fill="url(#grad)" stroke="#2C3E50" stroke-width="2"/>
+  
+  <!-- DOM tree representation -->
+  <g fill="none" stroke="#FFFFFF" stroke-width="3">
+    <!-- Root node -->
+    <circle cx="64" cy="35" r="12"/>
+    <!-- Connection lines -->
+    <path d="M64 47 L64 60"/>
+    <path d="M64 60 L44 75"/>
+    <path d="M64 60 L84 75"/>
+    <!-- Child nodes -->
+    <circle cx="44" cy="75" r="10"/>
+    <circle cx="84" cy="75" r="10"/>
+    <!-- Observation rings animation -->
+    <circle cx="64" cy="35" r="18" stroke-dasharray="4,4"/>
+    <circle cx="44" cy="75" r="16" stroke-dasharray="4,4" opacity="0.7"/>
+    <circle cx="84" cy="75" r="16" stroke-dasharray="4,4" opacity="0.7"/>
+  </g>
+  
+  <!-- Highlight indicator -->
+  <path d="M95 45 L105 45 M100 40 L100 50" stroke="#FFD93D" stroke-width="4"/>
+</svg> 
