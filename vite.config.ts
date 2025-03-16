@@ -44,6 +44,7 @@ export default defineConfig(({mode}) => {
     build: {
       rollupOptions: {
         input: {
+          web: './index.html',
           popup: './popup.html'
         }
       }
