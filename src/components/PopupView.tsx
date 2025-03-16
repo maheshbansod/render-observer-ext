@@ -96,7 +96,7 @@ export const PopupView = () => {
           <div>
             <span className="font-medium">Visualization</span>
             <p className="text-sm text-gray-500">
-              {isEnabled ? 'Currently watching DOM changes' : 'Click to start visualizing'}
+              {isEnabled ? 'Watching DOM changes' : 'Click to start visualizing'}
             </p>
           </div>
           <Switch checked={isEnabled} onChange={handleToggle} />
