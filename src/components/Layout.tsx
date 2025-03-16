@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 export const Layout = ({ children }: PropsWithChildren) => {
   return (
     <div className="popup-container bg-white" style={{ width: '320px' }}>
-      <div className="p-5">
+      <div>
         {children}
       </div>
       <footer className="text-center p-3 text-sm text-gray-500 border-t">

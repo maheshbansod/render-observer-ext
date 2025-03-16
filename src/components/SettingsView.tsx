@@ -50,7 +50,7 @@ export const SettingsView = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 px-5 pb-5">
       <div className="flex flex-col gap-5">
         <div>
           <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">

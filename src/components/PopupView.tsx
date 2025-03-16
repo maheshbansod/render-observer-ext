@@ -80,16 +80,8 @@ export const PopupView = () => {
     setHasConfigChanged(true);
   };
 
-  const navigateToSettings = () => {
-    // Implement navigation to settings view with current config
-    chrome.storage.local.set({ tempConfig: config }, () => {
-      // Assuming you have a way to switch views and pass a message
-      chrome.runtime.sendMessage({ action: 'switchView', view: 'settings' });
-    });
-  };
-
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 px-5 pb-5">
       <div>
         <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
           DOM Mutation Visualizer
