@@ -8,12 +8,12 @@ export interface Config {
 }
 
 export const DefaultConfig: Config = {
-    "borderColor": "#496683",
-    "borderWidth": "2px",
-    "borderStyle": "solid",
-    "highlightDuration": 500,
-    "zIndex": 999999,
-    "ignoredSelectors": []
+  borderColor: '#1E90FF',
+  borderWidth: '2px',
+  borderStyle: 'solid',
+  highlightDuration: 500,
+  zIndex: 999999,
+  ignoredSelectors: [],
 }; 
 
 export function areConfigsEqual(a: Config, b: Config): boolean {

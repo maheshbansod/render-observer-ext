@@ -1,17 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Switch } from './Switch';
 import { ConfigurationForm } from './ConfigurationForm';
-import { Config } from '../types/Config';
+import { Config, DefaultConfig } from '../types/Config';
 
-
-const dummyDefaultConfig: Config = {
-  borderColor: '#1E90FF',
-  borderWidth: '2px',
-  borderStyle: 'solid',
-  highlightDuration: 500,
-  zIndex: 999999,
-  ignoredSelectors: [],
-};
+const dummyDefaultConfig = DefaultConfig;
 
 export const PopupView = () => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -24,8 +16,12 @@ export const PopupView = () => {
       if (tabs[0]?.id) {
         chrome.tabs.sendMessage(tabs[0].id, { action: 'getState' }, (response) => {
           setIsEnabled(response?.isObserving || false);
-          if (response?.config) {
+          if (response?.isObserving && response?.config) {
             setConfig(response.config);
+          } else {
+            chrome.storage.sync.get(['defaultConfig'], (result) => {
+              setConfig(result.defaultConfig || dummyDefaultConfig);
+            });
           }
         });
       }
