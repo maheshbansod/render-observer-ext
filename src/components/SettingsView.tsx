@@ -2,8 +2,14 @@ import { useEffect, useState } from 'react';
 import { ConfigurationForm } from './ConfigurationForm';
 import { Config, DefaultConfig } from '../types/Config';
 
+// Update the pattern type
+interface URLPattern {
+  pattern: string;
+  enabled: boolean;
+}
+
 export const SettingsView = () => {
-  const [patterns, setPatterns] = useState<string[]>([]);
+  const [patterns, setPatterns] = useState<URLPattern[]>([]);
   const [newPattern, setNewPattern] = useState('');
   const [defaultConfig, setDefaultConfig] = useState<Config>(DefaultConfig);
   const [hasConfigChanged, setHasConfigChanged] = useState(false);
@@ -11,7 +17,12 @@ export const SettingsView = () => {
   useEffect(() => {
     // Load saved patterns and default config
     chrome.storage.sync.get(['autoEnablePatterns', 'defaultConfig'], (result) => {
-      setPatterns(result.autoEnablePatterns || []);
+      // Convert existing patterns to new format if needed
+      const savedPatterns = result.autoEnablePatterns || [];
+      const formattedPatterns = Array.isArray(savedPatterns) 
+        ? savedPatterns.map(p => typeof p === 'string' ? { pattern: p, enabled: true } : p)
+        : [];
+      setPatterns(formattedPatterns);
       if (result.defaultConfig) {
         setDefaultConfig(result.defaultConfig);
       }
@@ -31,7 +42,7 @@ export const SettingsView = () => {
     });
   };
 
-  const savePatterns = (newPatterns: string[]) => {
+  const savePatterns = (newPatterns: URLPattern[]) => {
     chrome.storage.sync.set({ autoEnablePatterns: newPatterns }, () => {
       setPatterns(newPatterns);
     });
@@ -39,13 +50,20 @@ export const SettingsView = () => {
 
   const addPattern = () => {
     if (newPattern) {
-      savePatterns([...patterns, newPattern]);
+      savePatterns([...patterns, { pattern: newPattern, enabled: true }]);
       setNewPattern('');
     }
   };
 
   const removePattern = (index: number) => {
     const newPatterns = patterns.filter((_, i) => i !== index);
+    savePatterns(newPatterns);
+  };
+
+  const togglePattern = (index: number) => {
+    const newPatterns = patterns.map((p, i) => 
+      i === index ? { ...p, enabled: !p.enabled } : p
+    );
     savePatterns(newPatterns);
   };
 
@@ -80,7 +98,23 @@ export const SettingsView = () => {
         <div className="space-y-2">
           {patterns.map((pattern, index) => (
             <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-              <code className="text-sm text-gray-700">{pattern}</code>
+              <div className="flex items-center gap-3 flex-1">
+                <button
+                  onClick={() => togglePattern(index)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                    pattern.enabled ? 'bg-blue-500' : 'bg-gray-300'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                      pattern.enabled ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
+                <code className={`text-sm ${pattern.enabled ? 'text-gray-700' : 'text-gray-400'}`}>
+                  {pattern.pattern}
+                </code>
+              </div>
               <button
                 onClick={() => removePattern(index)}
                 className="text-gray-400 hover:text-red-500 transition-colors"

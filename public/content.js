@@ -250,8 +250,10 @@
       
       const shouldAutoEnable = patterns.some(pattern => {
         try {
-          const regex = new RegExp(pattern);
-          return regex.test(currentUrl);
+          // Check both the pattern match and enabled status
+          const regex = new RegExp(typeof pattern === 'string' ? pattern : pattern.pattern);
+          const isEnabled = typeof pattern === 'string' ? true : pattern.enabled;
+          return isEnabled && regex.test(currentUrl);
         } catch {
           return false;
         }
